@@ -10,8 +10,14 @@
       "max_memory_restart": "500M",
       "env": {
         "PORT": "7100",
-        "NODE_ENV": "production"
-      }
+        "HOST": "0.0.0.0",
+        "NODE_ENV": "production",
+        "FLASK_APP": "src/api/api_docker.py",
+        "FLASK_ENV": "production",
+        "FLASK_DEBUG": "0",
+        "PYTHONUNBUFFERED": "1"
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm Z"
     },
     {
       "name": "web-interface",
@@ -23,8 +29,12 @@
       "max_memory_restart": "300M",
       "env": {
         "PORT": "5000",
-        "NODE_ENV": "production"
-      }
+        "HOST": "0.0.0.0",
+        "NODE_ENV": "production",
+        "FLASK_DEBUG": "0",
+        "PYTHONUNBUFFERED": "1"
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm Z"
     },
     {
       "name": "model-monitor",

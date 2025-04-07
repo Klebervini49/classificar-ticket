@@ -169,4 +169,9 @@ Se encontrar problemas ao executar o sistema:
    python -m src.model.treinar_modelo
    ```
 
-4. **Logs do Docker**: Verifique os logs com `cd docker && docker compose logs` 
+4. **Logs do Docker**: Verifique os logs com `cd docker && docker compose logs`
+
+5. **Problema com a API**: Para reiniciar apenas a API, execute:
+   ```bash
+   docker exec -it api-classificacao pm2 restart api-classificacao
+   ```
