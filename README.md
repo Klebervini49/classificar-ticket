@@ -93,10 +93,6 @@ cd docker && docker compose down
 ### Instalação de Dependências
 
 ```bash
-# Usando pnpm (recomendado)
-pnpm install -r requirements.txt
-
-# Ou pip padrão
 pip install -r requirements.txt
 ```
 
