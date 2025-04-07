@@ -241,6 +241,10 @@ def status():
         'host': HOST
     })
 
-if __name__ == '__main__':
+# Melhorando para garantir que a aplicação não será encerrada após inicialização
+def main():
     logger.info(f"Iniciando API de classificação de tickets na porta {PORT} e host {HOST}...")
-    app.run(host=HOST, port=PORT, debug=False) 
+    app.run(host=HOST, port=PORT, debug=False, use_reloader=False, threaded=True)
+
+if __name__ == '__main__':
+    main() 

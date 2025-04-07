@@ -2,8 +2,8 @@
   "apps": [
     {
       "name": "api-classificacao",
-      "script": "main.py",
-      "args": ["docker-api"],
+      "script": "python",
+      "args": ["-m", "src.api.api_docker"],
       "instances": 1,
       "autorestart": true,
       "watch": false,

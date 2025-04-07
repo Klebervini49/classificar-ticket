@@ -31,7 +31,7 @@ done
 # Parar e remover o container existente
 echo "🔄 Parando containers existentes..."
 cd docker
-docker compose down || docker-compose down
+docker-compose down
 cd ..
 
 # Gerar dados e treinar modelo para garantir que está disponível
@@ -57,7 +57,7 @@ docker rmi -f api-classificacao || true
 # Construir e iniciar o container
 echo "🔄 Construindo e iniciando o container..."
 cd docker
-docker compose up -d --build || docker-compose up -d --build
+docker-compose up -d --build
 cd ..
 
 # Aguardar inicialização - tempo aumentado
@@ -78,7 +78,7 @@ echo ""
 # Verificar logs para diagnosticar problemas
 echo "📋 Verificando logs do container:"
 cd docker
-docker compose logs --tail 30 || docker-compose logs --tail 30
+docker-compose logs --tail 30
 cd ..
 
 # Testar se a API está funcionando
@@ -113,7 +113,7 @@ done
 if [ -z "$API_OK" ]; then
     echo "❌ Falha na API após 3 tentativas. Verificando logs completos:"
     cd docker
-    docker compose logs || docker-compose logs
+    docker-compose logs
     cd ..
 fi
 
@@ -133,7 +133,7 @@ done
 if [ -z "$WEB_OK" ]; then
     echo "❌ Falha na interface web após 3 tentativas. Verificando logs completos:"
     cd docker
-    docker compose logs || docker-compose logs
+    docker-compose logs
     cd ..
 fi
 
@@ -143,7 +143,7 @@ echo "- API: http://localhost:7100"
 echo "- Interface Web: http://localhost:5000"
 echo ""
 echo "Comandos úteis:"
-echo "- Ver logs: cd docker && docker compose logs -f"
-echo "- Reiniciar: cd docker && docker compose restart"
+echo "- Ver logs: cd docker && docker-compose logs -f"
+echo "- Reiniciar: cd docker && docker-compose restart"
 echo "- Reiniciar apenas API: docker exec -it api-classificacao pm2 restart api-classificacao"
-echo "- Parar: cd docker && docker compose down" 
+echo "- Parar: cd docker && docker-compose down" 
