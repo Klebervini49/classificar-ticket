@@ -156,7 +156,38 @@ exemplos = {
         "Auto-complete de endereço não está funcionando em cadastros secundários",
         "Badge de notificação não está funcionando no ícone do perfil",
         "Opção de compartilhar por email não está funcionando",
-        "Tela raramente usada não está funcionando após atualização estética"
+        "Tela raramente usada não está funcionando após atualização estética",
+        # Exemplos específicos para resolver o problema de componentes críticos com problemas estéticos
+        "A tela de login é feia",
+        "A tela de login tem aparência antiquada",
+        "O botão de login está com cor fora do padrão",
+        "O formulário de pagamento tem design ultrapassado",
+        "A tela de checkout possui visual desagradável",
+        "O sistema de autenticação tem aparência pouco profissional",
+        "A interface de login precisa ser modernizada",
+        "A tela de pagamento tem cores que não combinam",
+        "A página de entrada do sistema é esteticamente pobre",
+        "O módulo financeiro tem interface desatualizada",
+        "Os ícones da tela de login precisam ser redesenhados",
+        "A tela de cadastro de usuários tem layout confuso",
+        "A página de pagamento precisa de melhorias visuais",
+        "O visual do sistema de login está fora do padrão da marca",
+        "A tela de login quebra em alguns tamanhos de tela",
+        "O sistema de pagamento tem elementos visuais mal alinhados",
+        "A área de autenticação tem problemas de posicionamento de botões",
+        "A interface do painel principal está desatualizada",
+        "O formulário de cadastro tem espaçamento inadequado",
+        "A tela de processamento de pedidos tem design confuso",
+        "O sistema de login tem fontes inconsistentes",
+        "A página inicial possui contraste de cores inadequado",
+        "A tela de login tem proporções erradas em dispositivos móveis",
+        "O sistema de autenticação tem animações desnecessárias",
+        "A tela de login tem problemas de alinhamento visual",
+        "O formulário de login é antiquado e precisa ser atualizado",
+        "A interface de pagamento tem elementos visuais inconsistentes",
+        "O dashboard principal tem elementos visuais mal posicionados",
+        "A tela de relatórios tem aparência desorganizada",
+        "O sistema de login não segue as diretrizes visuais da empresa"
     ]
 }
 
@@ -177,6 +208,25 @@ variações_não_funciona = [
     "quebrou",
     "está com defeito",
     "está com problema"
+]
+
+# Palavras relacionadas a problemas estéticos/visuais
+palavras_estéticas = [
+    "feio", "feia", "desagradável", "antiquado", "antiquada", "datado", "datada",
+    "ultrapassado", "ultrapassada", "desalinhado", "desalinhada", "mal posicionado",
+    "aparência ruim", "visual pobre", "estética inadequada", "mal formatado",
+    "cores erradas", "design ruim", "layout confuso", "visualmente desagradável",
+    "esteticamente pobre", "mal projetado", "desorganizado", "desorganizada",
+    "não intuitivo", "não intuitiva", "confuso", "confusa", "poluído", "poluída",
+    "aparência amadora", "desproporcional", "inconsistente", "desatualizado",
+    "desatualizada", "mal estruturado", "mal estruturada"
+]
+
+# Componentes críticos do sistema
+componentes_críticos = [
+    "login", "autenticação", "pagamento", "checkout", "senha", "cadastro", 
+    "faturamento", "bancário", "financeiro", "emissão de nota", "dashboard principal",
+    "relatório gerencial", "pedido", "compra", "venda", "transação", "saldo"
 ]
 
 # Qualificadores de contexto para cada prioridade
@@ -220,90 +270,219 @@ contexto_baixo = [
 ]
 
 # Gerador de tickets sintéticos melhorado
-def gerar_tickets(categoria, exemplos_base, total=12000):
-    tickets = []
-    
-    # Determinar o contexto baseado na categoria
-    if categoria == "alto":
-        contextos = contexto_alto
-    elif categoria == "medio":
-        contextos = contexto_medio
-    else:
-        contextos = contexto_baixo
-    
-    # Gerar tickets a partir dos exemplos base
-    for _ in range(total // 2):  # Metade dos tickets virá dos exemplos base
-        base = random.choice(exemplos_base)
-        complemento = random.choice([
-            "", " conforme relatado pela equipe", " com impacto parcial",
-            " que afeta usuários em produção", " após atualização", 
-            " causando atraso em entregas", " durante horário de pico",
-            " de forma aleatória", " que precisa ser resolvido urgentemente",
-            " que pode afetar outros módulos"
-        ])
-        tickets.append(f"{base}{complemento}")
-    
-    # Gerar tickets com padrão "X não está funcionando Y"
-    templates = [
-        "A tela de {0} {1} {2}",
-        "O módulo de {0} {1} {2}",
-        "A função de {0} {1} {2}",
-        "O sistema de {0} {1} {2}",
-        "O recurso de {0} {1} {2}",
-        "A página de {0} {1} {2}",
-        "O botão de {0} {1} {2}",
-        "A integração com {0} {1} {2}",
-        "O processo de {0} {1} {2}",
-        "A ferramenta de {0} {1} {2}"
-    ]
-    
-    funcionalidades = {
+def gerar_tickets(quantidade=30000):
+    """
+    Gera tickets sintéticos para treinamento do modelo
+    """
+    # Definir exemplos para cada nível de prioridade
+    exemplos = {
         "alto": [
-            "login", "pagamento", "checkout", "faturamento", "emissão de notas fiscais",
-            "autenticação", "controle de acesso", "processamento de pedidos", "gestão financeira",
-            "banco de dados", "dashboard principal", "monitoramento", "backup", "conciliação bancária",
-            "relatórios gerenciais"
+            "Sistema não está respondendo",
+            "Erro crítico na aplicação",
+            "Não consigo acessar o sistema",
+            "Aplicação está fora do ar",
+            "Erro 500 ao acessar o sistema",
+            "Serviço indisponível",
+            "Falha crítica no servidor",
+            "Erro de banco de dados crítico",
+            "Dados de clientes expostos",
+            "Vazamento de informações sensíveis",
+            "Sistema de pagamento não processa transações",
+            "API principal retornando erro",
+            "Não consigo fazer login no sistema",
+            "Erro de autenticação em todos os acessos",
+            "Sistema financeiro fora do ar",
+            "Gateway de pagamento não responde",
+            "Clientes não conseguem finalizar compras",
+            "O botão de login não funciona",
+            "A tela de login não permite acesso",
+            "O sistema de autenticação não valida senhas",
+            "O pagamento não é processado",
+            "O checkout falha ao finalizar",
+            "O botão de compra não responde aos cliques",
+            "O sistema de autenticação falha ao validar credenciais",
+            "A tela de login trava ao tentar acessar",
+            "O módulo financeiro não calcula valores corretamente",
+            "O gateway de pagamento retorna erro em todas as transações",
+            "O sistema de login está fora do ar",
+            "Clientes não conseguem fazer login",
+            "O sistema está rejeitando todas as transações",
+            "A autenticação de usuários está completamente inoperante",
+            "Checkout não funciona de jeito nenhum",
+            "Login quebrado completamente",
+            "Sistema inoperante na parte de pagamentos",
         ],
         "medio": [
-            "relatórios", "cadastro de clientes", "busca avançada", "exportação de dados",
-            "filtros", "notificações", "importação", "agendamento", "análise", "dashboards secundários",
-            "gestão de usuários", "configurações", "controle de estoque", "atendimento", "integração de APIs"
+            "Lentidão no sistema",
+            "Sistema está instável",
+            "Performance degradada",
+            "Páginas carregando com atraso",
+            "Timeout em algumas requisições",
+            "Alguns usuários relatando erros",
+            "Falha intermitente no login",
+            "Sistema apresenta erro ocasionalmente",
+            "Algumas funcionalidades estão lentas",
+            "Atraso no processamento de dados",
+            "Relatórios apresentando informações incompletas",
+            "Notificações com atraso",
+            "Alguns botões não funcionam corretamente",
+            "Parte dos usuários não consegue acessar",
+            "Erros em algumas transações",
+            "Pesquisa retornando resultados incompletos",
+            "Emails de confirmação não chegando",
+            "Algumas imagens não carregam",
+            "Cálculos incorretos em alguns cenários",
+            "Validação de formulários com falhas",
+            "Algumas transações estão sendo rejeitadas",
+            "Login funciona, mas está lento",
+            "Sistema de pagamento processa com atraso",
+            "Alguns usuários relatam problemas no checkout",
+            "O login falha ocasionalmente",
+            "Apenas alguns clientes não conseguem efetuar pagamento",
+            "A autenticação funciona, mas com lentidão",
+            "O sistema de pagamento está instável, mas funciona",
+            "O formulário de login está lento",
+            "Sistema lento para fazer login, mas funciona",
+            "Checkout por vezes apresenta travamentos",
         ],
         "baixo": [
-            "ajuda", "temas", "perfil", "preferências", "compartilhamento", "feedback",
-            "histórico", "preview de imagens", "notificações visuais", "ordenação de listas",
-            "personalização", "estatísticas secundárias", "tutoriais", "dicas", "créditos do sistema"
+            "Erro de ortografia na interface",
+            "Cor do botão incorreta",
+            "Fonte muito pequena",
+            "Layout desalinhado",
+            "Logotipo com baixa resolução",
+            "Texto truncado em alguns componentes",
+            "Mensagem de erro com texto confuso",
+            "Espaçamento incorreto entre elementos",
+            "Menu com item duplicado",
+            "Ícones não padronizados",
+            "Tradução incompleta em página secundária",
+            "Texto em idioma errado em página pouco acessada",
+            "Pequena falha no design responsivo",
+            "Formato de data inconsistente",
+            "Paginação com contador incorreto",
+            "Rodapé com informações desatualizadas",
+            "Badge de notificação mostrando número errado",
+            "Erro de digitação em mensagem de ajuda",
+            "Imagem de background com qualidade baixa",
+            "A interface está feia",
+            "O sistema tem aparência amadora",
+            "O design está ultrapassado",
+            "A paleta de cores não é atraente",
+            "A tela de login é feia",
+            "O botão de login tem cor inadequada",
+            "A interface de login tem aparência antiquada",
+            "A tela de pagamento tem design ultrapassado",
+            "O formulário de login tem layout desalinhado",
+            "Os botões de pagamento estão com cores que não combinam",
+            "A tela de login precisa ser modernizada",
+            "O módulo financeiro tem aparência desagradável",
+            "A página de checkout tem cores desarmoniosas",
+            "O formulário de autenticação tem design pouco profissional",
+            "A página de login tem aparência amadora",
+            "O sistema de autenticação tem design ultrapassado",
+            "O botão de pagamento está com cor errada",
+            "A interface do gateway de pagamento não é atraente",
+            "Os campos do formulário de login têm tamanho desproporcional",
+            "A estética da tela de login está ruim",
+            "A aparência da página de checkout não é moderna",
+            "O visual do sistema de autenticação é antiquado",
+            "A página de login tem layout confuso mas funcional",
+            "A estética do sistema de pagamento precisa ser melhorada",
+            "O design do módulo de autenticação é pouco atraente",
+            "Login feio demais",
+            "Login feio mas funcional",
+            "Login extremamente feio",
+            "UI do login é terrível, mas funciona",
+            "UI feia no login mas funcional",
+            "Interface terrível mas funcional no login",
+            "Aparência de login horrível mas operante",
+            "Tela de pagamento visualmente terrível mas que funciona",
+            "Design péssimo no login",
+            "Login com aparência horrível mas que funciona",
+            "Interface do login extremamente feia",
+            "Login terrivelmente feio mas operacional"
         ]
     }
     
-    # Gerar tickets adicionais com o padrão de funcionalidade que não funciona
-    for _ in range(total // 2):  # Metade dos tickets com esse padrão
-        template = random.choice(templates)
-        funcionalidade = random.choice(funcionalidades[categoria])
-        variação = random.choice(variações_não_funciona)
-        contexto = random.choice(contextos)
-        
-        ticket = template.format(funcionalidade, variação, contexto)
-        tickets.append(ticket)
+    # Gerar dados sintéticos
+    dados = {"texto": [], "prioridade": []}
     
-    return tickets
+    # Quantidade de exemplos por prioridade
+    quantidade_por_prioridade = quantidade // 3
+    
+    # Gerar dados para cada prioridade
+    for prioridade, exemplos_lista in exemplos.items():
+        for _ in range(quantidade_por_prioridade):
+            # 1/3 dos exemplos são exemplos diretos da lista
+            if random.random() < 0.3:
+                texto = random.choice(exemplos_lista)
+            # 2/3 são variações
+            else:
+                base = random.choice(exemplos_lista)
+                # Adicionar variações e ruído
+                prefixos = ["", "Olá, ", "Estou com um problema: ", "Preciso de ajuda com: ", 
+                           "Bom dia, ", "Urgente: ", "Verificar: ", "Problema: "]
+                sufixos = ["", " por favor me ajudem", " o que devo fazer?", " isso está me impedindo de trabalhar",
+                          " preciso de uma solução", " desde ontem", " aconteceu agora", " após a atualização"]
+                
+                texto = random.choice(prefixos) + base + random.choice(sufixos)
+            
+            dados["texto"].append(texto)
+            dados["prioridade"].append(prioridade)
+    
+    # Adicionar casos específicos que falharam anteriormente (com mais peso)
+    casos_especificos = {
+        "baixo": [
+            "Login feio demais",
+            "Login feio mas funcional",
+            "Login extremamente feio",
+            "UI do login é terrível, mas funciona",
+            "UI feia no login mas funcional",
+            "Interface terrível mas funcional no login",
+            "Aparência de login horrível mas operante",
+            "Tela de pagamento visualmente terrível mas que funciona",
+            "Design péssimo no login",
+            "Login com aparência horrível mas que funciona",
+            "Interface do login extremamente feia",
+            "Login terrivelmente feio mas operacional"
+        ],
+        "medio": [
+            "O formulário de login está lento",
+            "O formulário de login está um pouco lento",
+            "Formulário de login com lentidão moderada",
+            "Login com performance reduzida",
+            "Velocidade do login abaixo do esperado"
+        ]
+    }
+    
+    # Adicionar casos específicos (com repetição para dar mais peso)
+    for prioridade, casos in casos_especificos.items():
+        for caso in casos:
+            # Adicionar cada caso várias vezes para aumentar seu peso
+            for _ in range(30):  # Repetir 30 vezes
+                dados["texto"].append(caso)
+                dados["prioridade"].append(prioridade)
+    
+    # Criar dataframe
+    df = pd.DataFrame(dados)
+    
+    # Embaralhar os dados
+    df = df.sample(frac=1).reset_index(drop=True)
+    
+    return df
 
 def main():
     # Gerar o dataset
-    data = []
-    for prioridade in prioridades:
-        tickets = gerar_tickets(prioridade, exemplos[prioridade])
-        for texto in tickets:
-            data.append({"texto": texto, "prioridade": prioridade})
+    df = gerar_tickets()
 
-    # Criar DataFrame
-    df = pd.DataFrame(data)
-
-    # Salvar como CSV
-    csv_path = DATA_DIR / "dataset_tickets_prioridade.csv"
-    df.to_csv(csv_path, index=False, encoding='utf-8')
-    print(f"Dataset salvo em: {csv_path}")
-    return csv_path
+    # Criar diretório de dados se não existir
+    Path("data").mkdir(exist_ok=True)
+    
+    # Salvar dataset
+    caminho_dataset = os.path.join("data", "dataset_tickets_prioridade.csv")
+    df.to_csv(caminho_dataset, index=False)
+    print(f"Dataset salvo em: {os.path.abspath(caminho_dataset)}")
 
 if __name__ == "__main__":
     main()
