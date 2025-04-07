@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api-classificacao:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: api-classificacao
+    ports:
+      - "7100:7100"
+      - "5000:5000"
+    environment:
+      - PORT=7100
+      - WEB_PORT=5000
+    volumes:
+      - app-data:/app/data
+    restart: always
+    # Configurando limites de recursos
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+volumes:
+  app-data:
+    driver: local 

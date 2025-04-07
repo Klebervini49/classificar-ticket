@@ -1,0 +1,38 @@
+{
+  "apps": [
+    {
+      "name": "api-classificacao",
+      "script": "main.py",
+      "args": ["docker-api"],
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "500M",
+      "env": {
+        "PORT": "7100",
+        "NODE_ENV": "production"
+      }
+    },
+    {
+      "name": "web-interface",
+      "script": "main.py",
+      "args": ["app"],
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "300M",
+      "env": {
+        "PORT": "5000",
+        "NODE_ENV": "production"
+      }
+    },
+    {
+      "name": "model-monitor",
+      "script": "src/utils/restore_model.js",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "200M"
+    }
+  ]
+} 
